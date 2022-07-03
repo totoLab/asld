@@ -1,15 +1,3 @@
-# [USAGE]
-# asld [FLAG + OPTION] [SOURCE] [OUTPUT]
-#
-# [FLAGS] (optional)
-# -l: takes list of options (filenames format: basename.o)  
-#
-# [SOURCE]
-# list of file sources, accepted file extensions are: [nasm, asm, s].
-#
-# [OUTPUT] (optional)
-# can be specified, otherwise it's the basename of the 1st source
-
 nasm -f elf32 $1 &&
 basename="$(echo "$1" | cut -f 1 -d '.')" &&
 
