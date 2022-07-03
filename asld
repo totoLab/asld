@@ -11,4 +11,5 @@ else
     output=$2
 fi
 
-ld -m elf_i386 "${basename}.o" $utilsBinary -o $output
+ld -m elf_i386 "${basename}.o" $utilsBinary -o $output &&
+./$output
