@@ -12,6 +12,10 @@ else
             input="$input $utilsBinary"
         else
             basename="$(echo "$arg" | cut -f 1 -d '.')" &&
+            ext=${arg#"$basename"}
+            if [ $ext != ".nasm" ] && [ $ext != ".asm" ] && [ $ext != ".s" ]; then
+                echo "$ext is not a valid extension" && exit 0
+            fi
             nasm -f elf32 $arg &&
             input="$input ${basename}.o"
         fi
