@@ -8,8 +8,18 @@ basename="$(echo "$1" | cut -f 1 -d '.')" &&
 if [ $# -eq 1 ]; then
     output=$basename
 else
-    output=$2
+    input=""
+    for arg in "$@"
+    do
+        if [ $arg == "-dep" ]; then
+            input="$input $utilsBinary"
+        else
+            basename="$(echo "$arg" | cut -f 1 -d '.')" &&
+            nasm -f elf32 $arg &&
+            input="$input ${basename}.o"
+        fi
+    done
 fi
 
-ld -m elf_i386 "${basename}.o" $utilsBinary -o $output &&
+ld -m elf_i386 $input -o $output &&
 ./$output
