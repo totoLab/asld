@@ -2,11 +2,8 @@
 utilsBinary="../lib/utils.o"
 
 # scripts
-nasm -f elf32 $1 &&
-basename="$(echo "$1" | cut -f 1 -d '.')" &&
-
-if [ $# -eq 1 ]; then
-    output=$basename
+if [ $# -eq 0 ] || [ $# -eq 1 ] && [ $1 == "-dep" ]; then
+    echo "Not enough args." && exit 0
 else
     input=""
     for arg in "$@"
@@ -20,6 +17,8 @@ else
         fi
     done
 fi
+output=$basename #TODO introduce -o flag
+# echo "$@,$input,$output"
 
 ld -m elf_i386 $input -o $output &&
 ./$output
