@@ -2,10 +2,10 @@
 # asld -l [OPTION] [SOURCE] -o [OUTPUT]
 #
 # [FLAGS] (optional)
-# -l: takes list of options (filenames format: basename.o)  
+# -dep: adds dependencies specified in #configs section to the linking
 #
 # [SOURCE]
 # list of file sources, accepted file extensions are: [nasm, asm, s].
 #
-# [OUTPUT] (optional)
-# can be specified, otherwise it's the basename of the 1st source
+# [OUTPUT] (optional) 
+# can be specified (!TODO), otherwise it's the basename of the last source
